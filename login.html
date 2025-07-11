@@ -57,10 +57,11 @@
         .then((result) => {
           const user = result.user;
           console.log("Logged in as:", user.email);
-          window.location.href = "index.html"; // Redirect to home page
+          window.location.href = "index.html"; // Redirect after login
         })
         .catch((error) => {
           console.error("Login error:", error.message);
+          alert("Login failed: " + error.message);
         });
     }
   </script>
