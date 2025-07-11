@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clickify - Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 100px;
+      background-color: #f2f2f2;
+    }
+    h1 {
+      color: #333;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 16px;
+      background-color: #4285F4;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #357ae8;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Clickify</h1>
+  <button onclick="loginWithGoogle()">Login with Google</button>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+
+  <script>
+    // ✅ Replace these values with your real Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyEXAMPLEKEY1234567890",
+      authDomain: "clickify-abc123.firebaseapp.com",
+      projectId: "clickify-abc123",
+      storageBucket: "clickify-abc123.appspot.com",
+      messagingSenderId: "123456789012",
+      appId: "1:123456789012:web:abcdef123456"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    function loginWithGoogle() {
+      auth.signInWithPopup(provider)
+        .then((result) => {
+          const user = result.user;
+          console.log("Logged in as:", user.email);
+          window.location.href = "index.html"; // Redirect to home page
+        })
+        .catch((error) => {
+          console.error("Login error:", error.message);
+        });
+    }
+  </script>
+</body>
+</html>
